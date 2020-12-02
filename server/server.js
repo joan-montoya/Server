@@ -1,7 +1,9 @@
 require('./config/config');
 const express = require('express');
+const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 const app = express();
+
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -58,6 +60,18 @@ app.delete('/usuario/:id', function (req, res) {
   });
 })
  
+
+ mongoose.connect('mongodb://localhost:27017/cafeteria',{
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+ },(err, res) => {
+  if(err) throw err;
+  console.log('Base de datos ONLINE');
+});
+
+
 
 app.listen(process.env.PORT, ( )=> {
   console.log('La aplicacion esta en linea por el puerto', process.env.PORT)
