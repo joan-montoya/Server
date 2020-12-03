@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const _ = require('underscore');
 const Usuario = require('../models/usuario');
 const app = express();
@@ -37,7 +38,7 @@ const app = express();
         nombre: body.nombre,
         apellidos: req.body.apellidos,
         email: body.email,
-        password: body.password
+        password: bcrypt.hashSync(body.password, 10)
     });
 
     usr.save((err, usrDB) => {
