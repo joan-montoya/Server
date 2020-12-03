@@ -33,9 +33,11 @@ const app = express();
   app.post('/usuario', function (req, res) {
     let body = req.body;
     let usr = new Usuario({
+        _id: req.body._id,
         nombre: body.nombre,
+        apellidos: req.body.apellidos,
         email: body.email,
-        password: body.password,
+        password: body.password
     });
 
     usr.save((err, usrDB) => {

@@ -32,7 +32,8 @@ app.get('/categoria', (req, res) => {
 app.post('/categoria', (req, res) =>{
     let cat = new Categoria({
         descripcion: req.body.descripcion,
-        usuario: req.body.usuario
+        usuario: req.body.usuario,
+        _id: req.body._id
     });
 
     cat.save((err, catDB) => {

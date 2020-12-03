@@ -3,7 +3,15 @@ const mongoose = require ('mongoose');
 let Schema = mongoose.Schema;
 
 let usuarioSchema = new Schema({
+    _id: {
+        type: String,
+        required: [true, 'El id es necesario']   
+    },
     nombre: {
+        type: String,
+        required: [true, 'El nombre es necesario']
+    },
+    apellidos: {
         type: String,
         required: [true, 'El nombre es necesario']
     },
