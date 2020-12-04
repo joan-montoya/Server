@@ -12,10 +12,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
  
 app.get('/',function(req, res){
-  res.send('<h1>Equpipo 6-4D </h1>'),
-  res.send('<h1>RODRIGUEZ YLLESCAS KARLA MORIANA</h1>'),
-  res.send('<h1>MONTOYA LOPEZ  JOAN EMMANUEL  </h1>'),
-  res.send('<h1>GARCIA RESENDIZ OSCAR RENATO </h1>');
+  res.send('<h1>Equpipo 6-4D </h1>');
 });
 
 app.use(require('./routes/usuario'));
