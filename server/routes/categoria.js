@@ -5,7 +5,7 @@ const Categoria = require('../models/categoria');
 
 app.get('/categoria', (req, res) => {
     let desde = req.query.desde || 0;
-    let hasta = req.query.hasta || 5;
+    let hasta = req.query.hasta || 100;
 
     Categoria.find({})
     .skip(Number(desde))
@@ -24,6 +24,28 @@ app.get('/categoria', (req, res) => {
             ok: true,
             msg: 'Categorias listadas con exito',
             conteo: categorias.length,
+            categorias
+        });
+    });
+});
+
+app.get('/categoria/:id', (req, res) => {
+   
+    let idcat = req.params.id;
+    Categoria.findById({_id: idcat})
+    .populate('usuario','nombre email')
+    .exec((err, categorias) => {
+        if(err) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Ocurrio un error al listar las categorias',
+                err
+            });
+        }
+
+        res.json({
+            ok: true,
+            msg: 'Categorias listadas con exito',
             categorias
         });
     });

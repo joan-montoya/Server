@@ -5,7 +5,7 @@ const Producto = require('../models/producto');
 
 app.get('/producto', (req, res) => {
     let desde = req.query.desde || 0;
-    let hasta = req.query.hasta || 5;
+    let hasta = req.query.hasta || 100;
 
     Producto.find({})
     .skip(Number(desde))
@@ -24,6 +24,27 @@ app.get('/producto', (req, res) => {
             ok: true,
             msg: 'Productos listadas con exito',
             conteo: productos.length,
+            productos
+        });
+    });
+});
+
+app.get('/producto/:id', (req, res) => {
+    let idprod = req.params.id;
+    Producto.findById({_id: idprod})
+    .populate('categoria', 'descripcion usuario')
+    .exec((err, productos) => {
+        if(err) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Ocurrio un error al listar las productos',
+                err
+            });
+        }
+
+        res.json({
+            ok: true,
+            msg: 'Productos listadas con exito',
             productos
         });
     });
@@ -56,7 +77,7 @@ app.post('/producto', (req, res) =>{
 
 app.put('/producto/:id', function (req, res) {
     let id = req.params.id
-    let body = _.pick(req.body,['nombre','preciouni']);
+    let body = _.pick(req.body,['nombre','preciouni','categoria']);
 
     Producto.findByIdAndUpdate(id, body, { new:true, runValidators: true, context: 'query' }, (err, prodDB) =>{
         if(err) {
