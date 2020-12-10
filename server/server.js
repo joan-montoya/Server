@@ -34,7 +34,7 @@ app.use(require('./routes/categoria'));
 app.use(require('./routes/producto'));
 app.use(require('./routes/login'));
 
- mongoose.connect('mongodb+srv://admin:3526@cluster0.4pvv9.mongodb.net/cafeteria',{
+mongoose.connect('mongodb+srv://admin:moriana191465@cluster0.1umbf.mongodb.net/cafeteria', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
