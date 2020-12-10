@@ -26,7 +26,7 @@ app.use(bodyParser.json())
 
  
 app.get('/',function(req, res){
-  res.send('<h1>Equpipo 6-4D </h1>');
+  res.send('<h1>Equpipo 8-4D </h1>');
 });
 
 app.use(require('./routes/usuario'));
